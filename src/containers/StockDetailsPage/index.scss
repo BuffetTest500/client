@@ -1,0 +1,46 @@
+.stock_details_wrapper {
+  position: fixed;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(500px, 4fr) 1fr;
+  margin-top: 5rem;
+  align-items: flex-start;
+  height: 100%
+}
+
+.stock_details_left {
+  height: 100%;
+}
+
+.stock_item.card_list {
+  display: flex;
+  width: 95%;
+  height: 3rem;
+  justify-content: flex-end;
+}
+
+.card_list_title {
+  width: 95%;
+  text-align: right;
+  line-height: 0.2rem;
+  font-size: 3rem;
+  height: 2rem;
+  margin-top: 3.5rem;
+
+  p {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+.stock_item.chart {
+  height: 38rem;
+}
+
+.chart_stick:hover {
+    opacity: 0.2;
+}
+
+.chart_wrapper {
+  height: 60%;
+}

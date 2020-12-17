@@ -1,0 +1,96 @@
+@mixin rightAlignedButton() {
+  position: absolute;
+  right: 25px;
+}
+
+@mixin transitionButton() {
+  color: $primary;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+  transition: all ease .25s;
+
+  &:focus,
+  &:hover {
+    background-color: #fff;
+    color: $theme_color
+  }
+}
+
+.profile_button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.login_button {
+  @include rightAlignedButton;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #FF5391;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.preferences_button,
+.logout_button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  width: 180px;
+  background-color: #FF5391;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.portfolio_item_sumbit_button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  width: 120px;
+  background-color: #FF5391;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.portfolio_item_create_button,
+.portfolio_item_edit_button,
+.portfolio_item_remove_button {
+  background: none;
+  border: none;
+  color: $primary;
+}
+
+.tab_bar_button {
+  @include transitionButton();
+}
+
+.message_button {
+  background-color: $theme_color;
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio_toggle_button {
+  width: 16%;
+  background-color: rgb(255, 205, 5);
+  color: $theme_color;
+  border-radius: 1rem 1rem 0 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.my_portfolio_button,
+.portfolio_button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+};
+
+.dash_board_icon {
+  color: $theme_color;
+}
+
+.my_portfolio_button .dash_board_icon {
+  color: $primary;
+}

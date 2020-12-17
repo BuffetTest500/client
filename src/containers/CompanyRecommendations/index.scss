@@ -1,0 +1,23 @@
+.company_card_list.container {
+  display: flex;
+  margin-top: 0;
+  width: 90%;
+  height: 15rem;
+  overflow-x: auto;
+  border-radius: 0.3rem;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.container::-webkit-scrollbar {
+  width: 0.2rem;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: $theme_color;
+  border-radius: 0.3rem;
+}
+.container::-webkit-scrollbar-track {
+  border-radius: 0.3rem;
+  box-shadow: inset 0 0 5px white;
+}

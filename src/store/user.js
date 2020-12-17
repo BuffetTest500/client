@@ -1,20 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const slice = createSlice({
+const initialState = {
+  currentUser: null,
+  preferenceInfo: null,
+  staticPortfolio: [],
+  recommendationCriterion: 'random',
+};
+
+const userSlice = createSlice({
   name: 'userReducer',
-  initialState: {
-    user: null,
-  },
+  initialState,
   reducers: {
-    onLogin: (state, action) => {
-      state.user = action.payload;
+    setCurrentUser: (state, action) => {
+      state.currentUser = action.payload;
     },
-    onLogout: (state, action) => {
-      state.user = null;
+    setPreferenceInfo: (state, action) => {
+      state.preferenceInfo = action.payload;
+    },
+    setStaticPortfolio: (state, action) => {
+      state.staticPortfolio = action.payload;
+    },
+    setRecommendationCriterion: (state, action) => {
+      state.recommendationCriterion = action.payload;
+    },
+    initializeUserStates: () => {
+      localStorage.removeItem('token');
+      return initialState;
     },
   },
 });
 
-export default slice.reducer;
+export default userSlice.reducer;
 
-export const { onLogin, onLogout } = slice.actions;
+export const { setCurrentUser, removeCurrentUser, setPreferenceInfo, setStaticPortfolio, setRecommendationCriterion, initializeUserStates } = userSlice.actions;

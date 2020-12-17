@@ -1,0 +1,189 @@
+@mixin animationUp() {
+  transform: translateY(30px);
+  opacity: 0.5;
+  background-color: lavender;
+}
+
+@mixin animationDown() {
+  transform: translateY(-30px);
+  opacity: 1;
+  background-color: beige;
+}
+
+@keyframes upDownOdd {
+  100% {
+    @include animationUp();
+  }
+  50% {
+    @include animationDown();
+  }
+  0% {
+    @include animationUp();
+  }
+}
+
+@keyframes upDownEven {
+  100% {
+    @include animationDown();
+  }
+  50% {
+    @include animationUp();
+  }
+  0% {
+    @include animationDown();
+  }
+}
+
+.company_card {
+  display: flex;
+  height: 10em;
+  border-radius: 0.3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  color: $theme_color;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  cursor: pointer;
+
+  &:nth-child(odd) {
+    animation: upDownOdd 5s linear infinite;
+  }
+
+  &:nth-child(even) {
+    animation: upDownEven 5s linear infinite;
+  }
+};
+
+.card_item_wrapper {
+  padding: 0 2.8rem;
+}
+
+.dashbord {
+  padding: 0.3rem 0;
+}
+
+.dashbord_card {
+  display: flex;
+  width: 93%;
+  height: 10rem;
+  margin: 0;
+  padding: 0 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashbord_card_right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+
+  .dashbord_card_name {
+    font-size: 5rem;
+    line-height: 6rem;
+    font-weight: 700;
+  }
+
+  .dashbord_card_price {
+    font-size: 4rem;
+    font-weight: 400;
+  }
+
+  .dashbord_card_info {
+    font-size: 1rem;
+  }
+}
+
+.portfolio_card {
+  position: relative;
+	width: 90%;
+	min-height: 350px;
+	perspective: 800px;
+  margin: 1.2rem;
+}
+
+.my_portfolio_card {
+  display: flex;
+  align-items: center;
+  width: 38rem;
+  height: 20rem;
+  margin: 1.2rem;
+  background-color: #142649;
+  position: relative;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.3);
+
+  p {
+    font-size: 1rem;
+    margin: 0 auto;
+  }
+
+  p::after {
+    content: '';
+    border-bottom: 1px solid $primary;
+    position: absolute;
+    width: 13.5rem;
+    bottom: 8.5rem;
+    right: 3.8rem;
+  }
+
+  &:hover .card_message {
+    opacity: 0.8;
+  }
+
+  &:hover p {
+    opacity: 0.2;
+  }
+}
+
+.card_message {
+  position: absolute;
+  text-align: center;
+  line-height: 20rem;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  color: $primary;
+  margin: 0 auto;
+  transition: all 1 linear;
+  cursor: pointer;
+}
+
+.portfolio_wrapper {
+  position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+  height: 100%;
+  margin: 0 auto;
+	transition: 1s;
+	transform-style: preserve-3d;
+	box-shadow: 0 0 0.6rem 0.2rem rgba(0,0,0,.3);
+}
+
+.circle_chart_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.3rem;
+
+  &.mychart {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.portfolio_content {
+	width: 100%;
+  height: 100%;
+  border-radius: 0.3rem;
+  background-color: lavender;
+  padding: 10px 0;
+}
