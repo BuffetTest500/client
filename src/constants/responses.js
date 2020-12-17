@@ -1,7 +1,7 @@
 export const RESPONSE_RESULTS = {
   OK: 'ok',
   FAILURE: 'failure',
-  VALIDATION_ERR: 'validation err',
+  VALIDATION_ERROR: 'validation error',
   NOT_FOUND: 'not found',
 };
 

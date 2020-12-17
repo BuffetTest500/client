@@ -21,7 +21,7 @@ import requestHitUpdate from '../../api/requestHitUpdate';
 import { useToasts } from 'react-toast-notifications';
 import TOAST_APPEARANCES from '../../constants/toastAppearances';
 import { CANDLESTICK_CHART_TABS, INTERVALS } from '../../constants/intervals';
-import { RESPONSE_MESSAGES } from '../../constants/responses';
+import { RESPONSE_RESULTS } from '../../constants/responses';
 
 const StockDetails = () => {
   const { addToast } = useToasts();
@@ -34,7 +34,6 @@ const StockDetails = () => {
     recommendationSymbolList,
     currentUser,
   } = useSelector(state => ({
-    searchKeyWord: state.stock.searchStockDetails?.meta.symbol,
     searchStockDetails: state.stock.searchStockDetails?.values,
     oneWeekStockDetails: state.stock.oneWeekStockDetails?.values,
     oneMonthStockDetails: state.stock.oneMonthStockDetails?.values,
@@ -55,9 +54,28 @@ const StockDetails = () => {
     }
 
     try {
-      const { message: stockDetailsMessage, stockDetails } = await requestStockDetails(symbol);
+      const { result, stockDetails } = await requestStockDetails(symbol, interval);
 
-      if (stockDetailsMessage === RESPONSE_MESSAGES.NOT_FOUND) {
+      if (result === RESPONSE_RESULTS.OK) {
+        switch (interval) {
+          case CANDLESTICK_CHART_TABS.ONE_DAY:
+            dispatch(setSearchStockDetails(stockDetails));
+            break;
+          case CANDLESTICK_CHART_TABS.ONE_WEEK:
+            dispatch(setOneWeekStockDetails(stockDetails));
+            break;
+          case CANDLESTICK_CHART_TABS.ONE_MONTH:
+            dispatch(setOneMonthStockDetails(stockDetails));
+            break;
+          default: dispatch(setSearchStockDetails(stockDetails));
+            break;
+        }
+
+        setClickedTabList([...clickedTabList, interval]);
+        setCurrentClickedTab(interval);
+      }
+
+      if (result === RESPONSE_RESULTS.FAILURE) {
         addToast('기업 정보를 찾지 못했습니다', {
           appearance: TOAST_APPEARANCES.ERROR,
           autoDismiss: true,
@@ -65,23 +83,6 @@ const StockDetails = () => {
 
         return;
       }
-
-      switch (interval) {
-        case CANDLESTICK_CHART_TABS.ONE_Day:
-          dispatch(setSearchStockDetails(stockDetails));
-          break;
-        case CANDLESTICK_CHART_TABS.ONE_WEEK:
-          dispatch(setOneWeekStockDetails(stockDetails));
-          break;
-        case CANDLESTICK_CHART_TABS.ONE_MONTH:
-          dispatch(setOneMonthStockDetails(stockDetails));
-          break;
-        default: dispatch(setSearchStockDetails(stockDetails));
-          break;
-      }
-
-      setClickedTabList([...clickedTabList, interval]);
-      setCurrentClickedTab(interval);
     } catch (error) {
       console.error(error.message);
     }
@@ -93,15 +94,15 @@ const StockDetails = () => {
 
   useEffect(() => {
     dispatch(initializeStockStates());
-    setCurrentClickedTab(CANDLESTICK_CHART_TABS.ONE_Day);
-    setClickedTabList([CANDLESTICK_CHART_TABS.ONE_Day]);
+    setCurrentClickedTab(CANDLESTICK_CHART_TABS.ONE_DAY);
+    setClickedTabList([CANDLESTICK_CHART_TABS.ONE_DAY]);
   }, [symbol]);
 
   useEffect(() => {
     (async () => {
-      const { message: stockDetailsMessage, stockDetails } = await requestStockDetails(symbol);
+      const { result, stockDetails } = await requestStockDetails(symbol);
 
-      if (stockDetailsMessage === RESPONSE_MESSAGES.NOT_FOUND) {
+      if (result === RESPONSE_RESULTS.FAILURE) {
         addToast('기업 정보를 찾지 못했습니다', {
           appearance: TOAST_APPEARANCES.ERROR,
           autoDismiss: true,
@@ -110,18 +111,30 @@ const StockDetails = () => {
         return;
       }
 
-      dispatch(setSearchStockDetails(stockDetails));
+      if (result === RESPONSE_RESULTS.OK) {
+        dispatch(setSearchStockDetails(stockDetails));
 
-      const { recommendationSymbolList, recommendationSymbolInfo }
-        = await requestRecommendationSymbolList(symbol);
+        const { result, recommendationSymbolList, recommendationSymbolInfo }
+          = await requestRecommendationSymbolList(symbol);
 
-      dispatch(setRecommendationSymbolList(recommendationSymbolList));
-      dispatch(setRecommendationSymbolInfo(recommendationSymbolInfo));
-      setDashboardData({
-        ...recommendationSymbolInfo,
-        symbol,
-        price: stockDetails.values[0].close,
-      });
+        if (result === RESPONSE_RESULTS.OK) {
+          dispatch(setRecommendationSymbolList(recommendationSymbolList));
+        }
+
+        if (result === RESPONSE_RESULTS.FAILURE) {
+          addToast('리스트를 가져오지 못했습니다', {
+            appearance: TOAST_APPEARANCES.ERROR,
+            autoDismiss: true,
+          });
+        }
+
+        dispatch(setRecommendationSymbolInfo(recommendationSymbolInfo));
+        setDashboardData({
+          ...recommendationSymbolInfo,
+          symbol,
+          price: stockDetails.values[0].close,
+        });
+      }
     })();
   }, [symbol]);
 
@@ -138,7 +151,7 @@ const StockDetails = () => {
                   <TabBar onTabButtonClick={tabBarButtonClickHandle} />
                   <div className='chart_wrapper'>
                     {
-                      currentClickedTab === CANDLESTICK_CHART_TABS.ONE_Day
+                      currentClickedTab === CANDLESTICK_CHART_TABS.ONE_DAY
                       && <CandlestickChart
                         data={dateToObject(searchStockDetails)}
                         interval={INTERVALS.DAY}

@@ -6,4 +6,6 @@ export const CANDLESTICK_CHART_TABS = {
 
 export const INTERVALS = {
   DAY: 'day',
+  WEEK: 'week',
+  MONTH: 'month',
 };
