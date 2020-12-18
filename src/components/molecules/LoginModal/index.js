@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '../../atoms/Button';
 import PATHS from '../../../constants/paths';
 import { authService, provider } from '../../../config/firebase';
-import requestSignIn from '../../../api/requestSignIn';
+import requestSignIn from '../../../api/requestSignin';
 import { useToasts } from 'react-toast-notifications';
 import TOAST_APPEARANCES from '../../../constants/toastAppearances';
 import { RESPONSE_RESULTS } from '../../../constants/responses';
