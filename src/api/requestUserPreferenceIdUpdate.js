@@ -3,7 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestUserPreferenceIdUpdate = async (user, info) => {
   const response = await fetch(
-    `${PATHS.SERVER_URI}${PATHS.USERS}/${user.uid}`, {
+    `${process.env.REACT_APP_SERVER_URL}${PATHS.USERS}/${user.uid}`, {
     method: METHODS.PUT,
     headers: {
       'Content-Type': 'application/json',

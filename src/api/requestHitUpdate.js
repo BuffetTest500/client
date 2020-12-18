@@ -2,7 +2,7 @@ import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
 const requestHitUpdate = symbol => {
-  fetch(`${PATHS.SERVER_URI}/hits/${symbol}`, {
+  fetch(`${process.env.REACT_APP_SERVER_URL}/hits/${symbol}`, {
     method: METHODS.POST,
     credentials: 'include',
     headers: {

@@ -3,7 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestUser = async () => {
   const response = await fetch(
-    `${PATHS.SERVER_URI}${PATHS.USERS}/current_user`, {
+    `${process.env.REACT_APP_SERVER_URL}/current_user`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',

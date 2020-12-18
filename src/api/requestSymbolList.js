@@ -4,7 +4,7 @@ import PATHS from '../constants/paths';
 const requestSymbolList = async () => {
   try {
     const response = await fetch(
-      `${PATHS.SERVER_URI}${PATHS.COMPANY_PROFILES}${PATHS.SYMBOL}`, {
+      `${process.env.REACT_APP_SERVER_URL}${PATHS.COMPANY_PROFILES}${PATHS.SYMBOL}`, {
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',

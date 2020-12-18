@@ -3,7 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestStockDetails = async (keyword, interval) => {
   try {
-    const response = await fetch(`${PATHS.SERVER_URI}${PATHS.STOCK_DETAILS}/${keyword}/${interval}`, {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${PATHS.STOCK_DETAILS}/${keyword}/${interval}`, {
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',

@@ -5,11 +5,11 @@ const requestRecommendations = async (recommendationCriterion, currentUser, page
   let fetchUrl;
 
   if (recommendationCriterion === 'preference') {
-    fetchUrl = `${PATHS.SERVER_URI}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/preference/?page=${page}`;
+    fetchUrl = `${process.env.REACT_APP_SERVER_URL}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/preference/?page=${page}`;
   } else if (recommendationCriterion === 'portfolio') {
-    fetchUrl = `${PATHS.SERVER_URI}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/portfolio/?page=${page}`;
+    fetchUrl = `${process.env.REACT_APP_SERVER_URL}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/portfolio/?page=${page}`;
   } else {
-    fetchUrl = `${PATHS.SERVER_URI}/portfolios/random`;
+    fetchUrl = `${process.env.REACT_APP_SERVER_URL}/portfolios/random`;
   }
 
   const response = await fetch(fetchUrl, {
