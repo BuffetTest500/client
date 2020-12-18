@@ -2,7 +2,7 @@ const PATHS = {
   HOST: 'http://localhost',
   CLIENT_PORT: ':3000',
   SERVER_PORT: ':8080',
-  SERVER_URI: 'https://backend-dev2.ap-northeast-2.elasticbeanstalk.com',
+  SERVER_URI: 'http://backend-dev2.ap-northeast-2.elasticbeanstalk.com',
   ROOT: '/',
   SIGNUP: '/signup',
   LOGIN: '/login',
