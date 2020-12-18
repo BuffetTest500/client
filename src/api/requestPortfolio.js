@@ -2,7 +2,7 @@ import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
 const requestPortfolio = async portfolioOwnerUid => {
-  const portfolioResponse = await fetch(`${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.USERS}/${portfolioOwnerUid}/portfolio`, {
+  const portfolioResponse = await fetch(`${PATHS.SERVER_URI}${PATHS.USERS}/${portfolioOwnerUid}/portfolio`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',

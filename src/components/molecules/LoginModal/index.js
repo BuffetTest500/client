@@ -91,10 +91,12 @@ const LoginModal = ({
       <ModalOverlay setIsModalOpen={setIsModalOpen} />
       <Modal className='auth_modal'>
         <Button
+          className='login_button'
           onClick={googleAuthClickHandler}
           text='login with google'
         />
         <Button
+          className='signup_button'
           onClick={googleAuthClickHandler}
           text='signup with google'
         />
