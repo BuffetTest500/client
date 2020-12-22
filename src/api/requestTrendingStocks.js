@@ -11,7 +11,9 @@ const requestTrendingStocks = async () => {
     },
   });
 
-  return await response.json();
+  const responseToString = await response.text();
+  const json = responseToString === '' ? {} : JSON.parse(responseToString);
+  return json;
 };
 
 export default requestTrendingStocks;
