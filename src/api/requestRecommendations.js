@@ -5,11 +5,11 @@ const requestRecommendations = async (recommendationCriterion, currentUser, page
   let fetchUrl;
 
   if (recommendationCriterion === 'preference') {
-    fetchUrl = `${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/preference/?page=${page}`;
+    fetchUrl = `https://api.warrenbuffetttest500.site${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/preference/?page=${page}`;
   } else if (recommendationCriterion === 'portfolio') {
-    fetchUrl = `${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/portfolio/?page=${page}`;
+    fetchUrl = `https://api.warrenbuffetttest500.site${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/portfolio/?page=${page}`;
   } else {
-    fetchUrl = `${PATHS.HOST}${PATHS.SERVER_PORT}/portfolios/random`;
+    fetchUrl = `https://api.warrenbuffetttest500.site/portfolios/random`;
   }
 
   const response = await fetch(fetchUrl, {

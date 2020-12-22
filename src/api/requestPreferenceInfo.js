@@ -3,7 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestPreferenceInfo = async user => {
   const response = await fetch(
-    `${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.USERS}/${user.uid}/preference_infos/${user.preferenceInfoId}`, {
+    `https://api.warrenbuffetttest500.site${PATHS.USERS}/${user.uid}/preference_infos/${user.preferenceInfoId}`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
