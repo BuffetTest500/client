@@ -5,6 +5,7 @@ const requestSymbolList = async () => {
   try {
     const response = await fetch(
       `https://api.warrenbuffetttest500.site${PATHS.COMPANY_PROFILES}${PATHS.SYMBOL}`, {
+      mode: 'no-cors',
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',

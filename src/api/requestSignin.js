@@ -3,6 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestSignIn = async (userInfo, path) => {
   const response = await fetch(`https://api.warrenbuffetttest500.site${path}`, {
+    mode: 'no-cors',
     method: METHODS.POST,
     headers: {
       'Content-Type': 'application/json',

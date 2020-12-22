@@ -4,6 +4,7 @@ import PATHS from '../constants/paths';
 const requestPreferenceInfo = async user => {
   const response = await fetch(
     `https://api.warrenbuffetttest500.site${PATHS.USERS}/${user.uid}/preference_infos/${user.preferenceInfoId}`, {
+    mode: 'no-cors',
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
