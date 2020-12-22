@@ -175,14 +175,14 @@ const StockDetails = () => {
                 </>
             }
           </div>
-          <div className='card_list_title'>
-            <p>성격이 비슷한 기업들을 알려드릴게요</p>
-          </div>
           <div className='stock_item card_list'>
             {
               recommendationSymbolList
               && <CompanyRecommendations className='company_card_list container' />
             }
+          </div>
+          <div className='card_list_title'>
+            <p>성격이 비슷한 기업들을 알려드릴게요</p>
           </div>
         </div>
         <div className='stock_details_right'>

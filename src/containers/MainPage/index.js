@@ -159,35 +159,38 @@ const Main = ({ setIsModalOpen }) => {
           currentUser
           ? <Card className='my_portfolio_card'>
             {
-              !isLoaded
-                ? <LoadingIndicator />
-                : (
-                   staticPortfolio.length
+                  !staticPortfolio.length && !total
                    ? <>
-                      <div className='circle_chart_wrapper mychart'>
-                        <CircleChart
-                          data={chartData}
-                          type='donut'
-                          total={total}
-                        />
-                      </div>
-                      <Button
-                        className='my_portfolio_button'
-                        onClick={myPortfolioClickHandler}
-                      >
-                        <DashboardIcon className='dash_board_icon' />
-                      </Button>
-                    </>
-                   :<>
-                      <p>포트폴리오를 등록해주세요👀</p>
+                     <p>포트폴리오를 등록해주세요👀</p>
                       <div
                         onClick={myPortfolioClickHandler}
                         className='card_message'
                       >
                         go to my portfolio
                       </div>
-                      </>
-                  )
+                    </>
+                   : (
+                   <>
+                   {
+                     !isLoaded
+                     ? <LoadingIndicator />
+                     : <>
+                        <div className='circle_chart_wrapper mychart'>
+                          <CircleChart
+                            data={chartData}
+                            type='donut'
+                            total={total}
+                          />
+                        </div>
+                        <Button
+                          className='my_portfolio_button'
+                          onClick={myPortfolioClickHandler}
+                        >
+                          <DashboardIcon className='dash_board_icon' />
+                        </Button>
+                        </>
+                   }
+                 </>)
             }
             </Card>
           : <Card className='my_portfolio_card'>

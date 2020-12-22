@@ -68,9 +68,9 @@ const ChatRoom = () => {
 
     setNickname(currentUser.displayName);
     fetchChats(setChats, roomName);
-  }, [roomName]);
+  }, [roomName, currentUser]);
 
-  useEffect(scrollToBottom, [newchat]);
+  useEffect(scrollToBottom, [newchat, chats]);
 
   return (
     <div className='chatroom_wrapper'>
@@ -107,7 +107,9 @@ const ChatRoom = () => {
               placeholder='Enter message here'
               value={newchat.message}
               onKeyPress={submitMessage}
-              onChange={onChange}>
+              onChange={onChange}
+              autoComplete='off'
+            >
             </Input>
             <Button
               className='message_button'

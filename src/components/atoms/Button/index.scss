@@ -1,6 +1,6 @@
 @mixin rightAlignedButton() {
   position: absolute;
-  right: 25px;
+  right: 0.1rem;
 }
 
 @mixin transitionButton() {
@@ -22,12 +22,12 @@
   border-radius: 50%;
 }
 
+.signup_button,
 .login_button {
-  @include rightAlignedButton;
   padding: 10px 15px;
   border: none;
   border-radius: 10px;
-  background-color: #FF5391;
+  background-color: $primary;
   font-size: 16px;
   font-weight: bold;
 }
@@ -38,7 +38,7 @@
   border: none;
   border-radius: 10px;
   width: 180px;
-  background-color: #FF5391;
+  background-color: $primary;
   font-size: 16px;
   font-weight: bold;
 }
@@ -48,7 +48,7 @@
   border: none;
   border-radius: 10px;
   width: 120px;
-  background-color: #FF5391;
+  background-color: $primary;
   font-size: 12px;
   font-weight: bold;
 }

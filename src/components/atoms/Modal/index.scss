@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   color: white;
-  background-color: #1D304A;
-  z-index: 10;
+  background-color: $primary;
+  z-index: 2;
 }
 
 @mixin centered() {
@@ -34,7 +34,7 @@
 
   h3 {
     margin-block-start: 0;
-    margin-block-end: .2em;
+    margin-block-end: 0.2em;
   }
 }
 
@@ -42,6 +42,6 @@
   @include modalBase;
   @include centered;
   justify-content: space-evenly;
-  width: 360px;
-  height: 240px;
+  width: 24rem;
+  height: 16rem;
 }

@@ -119,15 +119,6 @@
     margin: 0 auto;
   }
 
-  p::after {
-    content: '';
-    border-bottom: 1px solid $primary;
-    position: absolute;
-    width: 13.5rem;
-    bottom: 8.5rem;
-    right: 3.8rem;
-  }
-
   &:hover .card_message {
     opacity: 0.8;
   }
