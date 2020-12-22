@@ -178,7 +178,8 @@ const StockDetails = () => {
           <div className='stock_item card_list'>
             {
               recommendationSymbolList
-              && <CompanyRecommendations className='company_card_list container' />
+              && <CompanyRecommendations
+                className='company_card_list container' />
             }
           </div>
           <div className='card_list_title'>
