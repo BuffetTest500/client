@@ -1,9 +1,10 @@
+  
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
 const requestPreferenceInfoUpdate = async (user, info) => {
   const response = await fetch(
-    `${process.env.REACT_APP_SERVER_URL}/${user.uid}/preference_infos`, {
+    `${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.USERS}/${user.uid}/preference_infos`, {
     method: user.preferenceInfoId ? METHODS.PUT : METHODS.POST,
     headers: {
       'Content-Type': 'application/json',
@@ -16,3 +17,4 @@ const requestPreferenceInfoUpdate = async (user, info) => {
 };
 
 export default requestPreferenceInfoUpdate;
+

@@ -2,7 +2,7 @@ import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
 const requestRecommendationSymbolList = async keyword => {
-  const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${PATHS.COMPANY_PROFILES}${PATHS.RECOMMENDATION_STOCK_LIST}/${keyword}`, {
+  const response = await fetch(`${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.COMPANY_PROFILES}${PATHS.RECOMMENDATION_STOCK_LIST}/${keyword}`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',

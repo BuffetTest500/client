@@ -1,13 +1,12 @@
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
-const requestStockDetails = async (keyword, interval) => {
+const requestStockDetails = async (keyword, interval = '1day') => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}${PATHS.STOCK_DETAILS}/${keyword}/${interval}`, {
+    const response = await fetch(`${PATHS.HOST}${PATHS.SERVER_PORT}${PATHS.STOCK_DETAILS}/${keyword}/${interval}`, {
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
 
