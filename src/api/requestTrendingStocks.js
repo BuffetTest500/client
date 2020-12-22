@@ -3,7 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestTrendingStocks = async () => {
   const response = await fetch(
-    `${PATHS.HOST}${PATHS.SERVER_PORT}/hits/trending`, {
+    `${process.env.REACT_APP_SERVER_URL}/hits/trending`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
