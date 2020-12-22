@@ -4,6 +4,7 @@ import PATHS from '../constants/paths';
 const requestStockDetails = async (keyword, interval = '1day') => {
   try {
     const response = await fetch(`https://api.warrenbuffetttest500.site${PATHS.STOCK_DETAILS}/${keyword}/${interval}`, {
+      mode: 'no-cors',
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',

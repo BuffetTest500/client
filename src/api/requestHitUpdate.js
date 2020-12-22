@@ -3,6 +3,7 @@ import PATHS from '../constants/paths';
 
 const requestHitUpdate = symbol => {
   fetch(`https://api.warrenbuffetttest500.site/hits/${symbol}`, {
+    mode: 'no-cors',
     method: METHODS.POST,
     credentials: 'include',
     headers: {

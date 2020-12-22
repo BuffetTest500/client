@@ -4,6 +4,7 @@ import PATHS from '../constants/paths';
 const requestTrendingStocks = async () => {
   const response = await fetch(
     `https://api.warrenbuffetttest500.site/hits/trending`, {
+    mode: 'no-cors',
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
