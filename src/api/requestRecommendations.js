@@ -1,15 +1,17 @@
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
+const { REACT_APP_SERVER_URL } = process.env;
+
 const requestRecommendations = async (recommendationCriterion, currentUser, page) => {
   let fetchUrl;
 
   if (recommendationCriterion === 'preference') {
-    fetchUrl = `https://api.warrenbuffetttest500.site${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/preference/?page=${page}`;
+    fetchUrl = `${REACT_APP_SERVER_URL}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/preference/?page=${page}`;
   } else if (recommendationCriterion === 'portfolio') {
-    fetchUrl = `https://api.warrenbuffetttest500.site${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/portfolio/?page=${page}`;
+    fetchUrl = `${REACT_APP_SERVER_URL}${PATHS.USERS}/${currentUser.uid}/portfolios/recommendations/portfolio/?page=${page}`;
   } else {
-    fetchUrl = `https://api.warrenbuffetttest500.site/portfolios/random`;
+    fetchUrl = `${REACT_APP_SERVER_URL}/portfolios/random`;
   }
 
   const response = await fetch(fetchUrl, {
@@ -21,9 +23,7 @@ const requestRecommendations = async (recommendationCriterion, currentUser, page
     },
   });
 
-  const responseToString = await response.text();
-  const json = responseToString === '' ? {} : JSON.parse(responseToString);
-  return json;
+  return await response.json();
 };
 
 export default requestRecommendations;

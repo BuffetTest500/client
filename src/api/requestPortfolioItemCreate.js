@@ -1,8 +1,10 @@
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
+const { REACT_APP_SERVER_URL } = process.env;
+
 const requestPortfolioItemCreate = async (userUid, data) => {
-  const response = await fetch(`https://api.warrenbuffetttest500.site${PATHS.USERS}/${userUid}/portfolio_items`, {
+  const response = await fetch(`${REACT_APP_SERVER_URL}${PATHS.USERS}/${userUid}/portfolio_items`, {
     mode: 'no-cors',
     method: METHODS.POST,
     headers: {

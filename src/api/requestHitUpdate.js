@@ -1,8 +1,9 @@
 import METHODS from '../constants/methods';
-import PATHS from '../constants/paths';
+
+const { REACT_APP_SERVER_URL } = process.env;
 
 const requestHitUpdate = symbol => {
-  fetch(`https://api.warrenbuffetttest500.site/hits/${symbol}`, {
+  fetch(`${REACT_APP_SERVER_URL}/hits/${symbol}`, {
     mode: 'no-cors',
     method: METHODS.POST,
     credentials: 'include',

@@ -1,19 +1,18 @@
 import METHODS from '../constants/methods';
-import PATHS from '../constants/paths';
+
+const { REACT_APP_SERVER_URL } = process.env;
 
 const requestTrendingStocks = async () => {
   const response = await fetch(
-    `https://api.warrenbuffetttest500.site/hits/trending`, {
+    `${REACT_APP_SERVER_URL}/hits/trending`, {
     mode: 'no-cors',
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
     },
   });
-
-  const responseToString = await response.text();
-  const json = responseToString === '' ? {} : JSON.parse(responseToString);
-  return json;
+  console.log(await response.json());
+  // return await response.json();
 };
 
 export default requestTrendingStocks;
