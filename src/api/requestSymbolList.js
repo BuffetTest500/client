@@ -14,7 +14,7 @@ const requestSymbolList = async () => {
       },
     });
 
-    const data = await response.json();
+    const { result, data } = await response.json();
     const symbolList = data.map(item => item.symbol);
 
     return { result, symbolList };

@@ -1,5 +1,5 @@
 import METHODS from '../constants/methods';
-
+import PATHS from '../constants/paths';
 const { REACT_APP_SERVER_URL } = process.env;
 
 const requestTrendingStocks = async () => {
@@ -11,8 +11,8 @@ const requestTrendingStocks = async () => {
       'Content-Type': 'application/json',
     },
   });
-  console.log(await response.json());
-  // return await response.json();
+
+  return await response.json();
 };
 
 export default requestTrendingStocks;
