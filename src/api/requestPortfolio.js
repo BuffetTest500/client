@@ -5,7 +5,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 
 const requestPortfolio = async portfolioOwnerUid => {
   const portfolioResponse = await fetch(`${REACT_APP_SERVER_URL}${PATHS.USERS}/${portfolioOwnerUid}/portfolio`, {
-    mode: 'no-cors',
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',

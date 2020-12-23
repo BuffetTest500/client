@@ -5,7 +5,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 const requestUserPreferenceIdUpdate = async (user, info) => {
   const response = await fetch(
     `${REACT_APP_SERVER_URL}${PATHS.USERS}/${user.uid}`, {
-    mode: 'no-cors',
     method: METHODS.PUT,
     headers: {
       'Content-Type': 'application/json',

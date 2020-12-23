@@ -4,7 +4,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 
 const requestSignIn = async (userInfo, path) => {
   const response = await fetch(`${REACT_APP_SERVER_URL}${path}`, {
-    mode: 'no-cors',
     method: METHODS.POST,
     headers: {
       'Content-Type': 'application/json',

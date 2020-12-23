@@ -15,7 +15,6 @@ const requestRecommendations = async (recommendationCriterion, currentUser, page
   }
 
   const response = await fetch(fetchUrl, {
-    mode: 'no-cors',
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',

@@ -5,7 +5,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 
 const requestPortfolioItemDelete = async (userUid, portfolioItemId) => {
   const response = await fetch(`${REACT_APP_SERVER_URL}${PATHS.USERS}/${userUid}/portfolio_items/${portfolioItemId}`, {
-    mode: 'no-cors',
     method: METHODS.DELETE,
     headers: {
       'Content-Type': 'application/json',

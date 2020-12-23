@@ -6,7 +6,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 const requestStockDetails = async (keyword, interval = '1day') => {
   try {
     const response = await fetch(`${REACT_APP_SERVER_URL}${PATHS.STOCK_DETAILS}/${keyword}/${interval}`, {
-      mode: 'no-cors',
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',

@@ -7,7 +7,6 @@ const requestSymbolList = async () => {
   try {
     const response = await fetch(
       `${REACT_APP_SERVER_URL}${PATHS.COMPANY_PROFILES}${PATHS.SYMBOL}`, {
-      mode: 'no-cors',
       method: METHODS.GET,
       headers: {
         'Content-Type': 'application/json',

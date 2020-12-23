@@ -5,7 +5,6 @@ const { REACT_APP_SERVER_URL } = process.env;
 const requestUser = async () => {
   const response = await fetch(
     `${REACT_APP_SERVER_URL}${PATHS.USERS}/current_user`, {
-    mode: 'no-cors',
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
