@@ -1,10 +1,10 @@
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
+const { REACT_APP_SERVER_URL } = process.env;
 
 const requestTrendingStocks = async () => {
   const response = await fetch(
-    `https://api.warrenbuffetttest500.site/hits/trending`, {
-    mode: 'no-cors',
+    `${REACT_APP_SERVER_URL}/hits/trending`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',

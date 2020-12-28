@@ -2,10 +2,11 @@
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
+const { REACT_APP_SERVER_URL } = process.env;
+
 const requestPreferenceInfoUpdate = async (user, info) => {
   const response = await fetch(
-    `https://api.warrenbuffetttest500.site${PATHS.USERS}/${user.uid}/preference_infos`, {
-    mode: 'no-cors',
+    `${REACT_APP_SERVER_URL}${PATHS.USERS}/${user.uid}/preference_infos`, {
     method: user.preferenceInfoId ? METHODS.PUT : METHODS.POST,
     headers: {
       'Content-Type': 'application/json',

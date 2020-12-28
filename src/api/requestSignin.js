@@ -1,9 +1,9 @@
 import METHODS from '../constants/methods';
-import PATHS from '../constants/paths';
+
+const { REACT_APP_SERVER_URL } = process.env;
 
 const requestSignIn = async (userInfo, path) => {
-  const response = await fetch(`https://api.warrenbuffetttest500.site${path}`, {
-    mode: 'no-cors',
+  const response = await fetch(`${REACT_APP_SERVER_URL}${path}`, {
     method: METHODS.POST,
     headers: {
       'Content-Type': 'application/json',

@@ -74,5 +74,4 @@ const CircleChart = ({ data, type, total }) => {
   );
 };
 
-
 export default CircleChart;

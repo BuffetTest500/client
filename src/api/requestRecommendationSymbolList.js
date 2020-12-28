@@ -1,9 +1,10 @@
 import METHODS from '../constants/methods';
 import PATHS from '../constants/paths';
 
+const { REACT_APP_SERVER_URL } = process.env;
+
 const requestRecommendationSymbolList = async keyword => {
-  const response = await fetch(`https://api.warrenbuffetttest500.site${PATHS.COMPANY_PROFILES}${PATHS.RECOMMENDATION_STOCK_LIST}/${keyword}`, {
-    mode: 'no-cors',
+  const response = await fetch(`${REACT_APP_SERVER_URL}${PATHS.COMPANY_PROFILES}${PATHS.RECOMMENDATION_STOCK_LIST}/${keyword}`, {
     method: METHODS.GET,
     headers: {
       'Content-Type': 'application/json',
