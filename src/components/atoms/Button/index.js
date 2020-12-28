@@ -4,7 +4,6 @@ const Button = ({
   className,
   onClick,
   text,
-  imgSrc,
   children,
   ...attributes
 }) => {
