@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Header from '../../components/organisms/Header';
 import {
   setCurrentUser,
   setPreferenceInfo,
   setStaticPortfolio,
   setRecommendationCriterion,
+  initializeUserStates,
 } from '../../store/user';
 import LoginModal from '../../components/molecules/LoginModal/';
 import PreferencesForm from '../../components/templates/PreferencesForm';
@@ -21,32 +22,36 @@ import requestPortfolio from '../../api/requestPortfolio';
 import setCookie from '../../utils/setCookie';
 import getCookie from '../../utils/getCookie';
 import uuid from 'uuid-random';
-import { initializeUserStates } from '../../store/user';
 
-const App = ({
-  onInitialStatesFetched,
-  onLogin,
-  onLogout,
-  currentUser,
-  onUserUpdate,
-  onPreferenceInfoUpdate,
-  staticPortfolio,
-  onStaticPortfolioFetched,
-  setRecommendationCriterion,
-}) => {
+const App = () => {
+  const dispatch = useDispatch();
+  const { currentUser, staticPortfolio } = useSelector(state => ({
+    currentUser: state.user.currentUser,
+    staticPortfolio: state.user.staticPortfolio,
+  }));
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const loginButtonClickHandler = () => {
     setIsAuthModalOpen(true);
   };
+  const onInitialStatesFetched = (user, preferenceInfo) => {
+    dispatch(setCurrentUser(user));
+    if (!preferenceInfo) return;
+    dispatch(setPreferenceInfo(preferenceInfo));
+  };
+  const onLogin = user => dispatch(setCurrentUser(user));
+  const onLogout = () => dispatch(initializeUserStates());
+  const onUserUpdate = user => dispatch(setCurrentUser(user));
+  const onPreferenceInfoUpdate = preferenceInfo => dispatch(setPreferenceInfo(preferenceInfo));
+  const onStaticPortfolioFetched = portfolio => dispatch(setStaticPortfolio(portfolio));
 
   useEffect(() => {
     if (!currentUser || !staticPortfolio.length) {
-      setRecommendationCriterion('random');
+      dispatch(setRecommendationCriterion('random'));
 
       return;
     }
 
-    setRecommendationCriterion('portfolio');
+    dispatch(setRecommendationCriterion('portfolio'));
   }, [currentUser, staticPortfolio]);
 
   useEffect(() => {
@@ -127,28 +132,4 @@ const App = ({
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user.currentUser,
-    staticPortfolio: state.user.staticPortfolio,
-    recommendationCriterion: state.user.recommendationCriterion,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onInitialStatesFetched: (user, preferenceInfo) => {
-      dispatch(setCurrentUser(user));
-      if (!preferenceInfo) return;
-      dispatch(setPreferenceInfo(preferenceInfo));
-    },
-    onLogin: user => dispatch(setCurrentUser(user)),
-    onLogout: () => dispatch(initializeUserStates()),
-    onUserUpdate: user => dispatch(setCurrentUser(user)),
-    onPreferenceInfoUpdate: preferenceInfo => dispatch(setPreferenceInfo(preferenceInfo)),
-    onStaticPortfolioFetched: portfolio => dispatch(setStaticPortfolio(portfolio)),
-    setRecommendationCriterion: criterion => dispatch(setRecommendationCriterion(criterion)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
