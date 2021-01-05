@@ -1,7 +1,9 @@
 const getCookie = name => {
+  console.log('document', document.cookie);
   const nameEquals = name + '=';
   const cookies = document.cookie.split(';');
 
+  console.log(cookies);
   for (let i = 0; i < cookies.length; i++) {
     let cookie = cookies[i];
 
