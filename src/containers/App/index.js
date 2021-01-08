@@ -89,6 +89,10 @@ const App = () => {
     fetchStaticPortfolio();
   }, [currentUser]);
 
+  useEffect(() => {
+    alert('무료 API를 사용하고 있습니다. API 요청 횟수가 넘으면 사이트가 작동하지 않을 수 있습니다 양해부탁드립니다😢');
+  }, []);
+
   return (
     <>
       <Header
@@ -109,7 +113,7 @@ const App = () => {
         </Route>
         {
           currentUser
-          && <Route path='/users/:user_uid/portfolios/:portfolio_owner_uid'>
+          && <Route path={`${PATHS.USERS}${PATHS.USER_UID}${PATHS.PORTFOLIOS}${PATHS.PORTFOLIOS_OWNER_UID}`}>
             <PortfolioPage
               currentUser={currentUser}
               currentUserStaticPortfolio={staticPortfolio}
